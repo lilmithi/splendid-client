@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { NavLink, useParams } from "react-router-dom";
 import Page404 from "../Page404/Page404";
+import { url } from "../../../../constant";
 
 function Checkout() {
   const { data } = useParams();
@@ -10,7 +11,7 @@ function Checkout() {
   const [is404, setIs404] = useState(false);
   const total = data.slice(data.indexOf("-") + 1);
   useEffect(() => {
-    fetch(`/events/${parseInt(eventId)}`).then((resp) => {
+    fetch(`${url}/events/${parseInt(eventId)}`).then((resp) => {
       if (resp.ok) {
         setIs404(false);
         const response = resp.json();

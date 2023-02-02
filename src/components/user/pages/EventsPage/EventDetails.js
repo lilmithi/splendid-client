@@ -1,6 +1,7 @@
 import React, { Suspense, useContext, useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { userContext } from "../../../../App";
+import { url } from "../../../../constant";
 import Spinner from "../../../Spinner";
 const CommentPic = React.lazy(() => import("./CommentPic"));
 
@@ -21,7 +22,7 @@ function EventDetails() {
   const history = useHistory();
 
   useEffect(() => {
-    fetch(`/events/${eventId}`).then((resp) => {
+    fetch(`${url}/events/${eventId}`).then((resp) => {
       if (resp.ok) {
         resp.json().then((data) => setFoundEvent(data));
       }
@@ -29,7 +30,7 @@ function EventDetails() {
   }, [eventId]);
 
   useEffect(() => {
-    fetch("/comments").then((resp) => {
+    fetch(`${url}/comments`).then((resp) => {
       if (resp.ok) {
         resp.json().then((data) => {
           data = data.filter((d) => parseInt(d.event_id) === parseInt(eventId));
@@ -71,7 +72,7 @@ function EventDetails() {
   }
 
   function handleDelete(id) {
-    fetch(`/comments/${id}`, {
+    fetch(`${url}/comments/${id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({}),
@@ -81,7 +82,7 @@ function EventDetails() {
   function handleComment(e) {
     e.preventDefault();
     setPostComment(true);
-    fetch(`/comments`, {
+    fetch(`${url}/comments`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

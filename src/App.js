@@ -10,6 +10,7 @@ import SignupForm from "./components/user/pages/SignupPage/SignupForm";
 import EventDetails from "./components/user/pages/EventsPage/EventDetails";
 import Tickets from "./components/user/pages/TicketsPage/Tickets";
 import Checkout from "./components/user/pages/CheckoutPage/Checkout";
+import { url } from "./constant";
 
 export const StatusContext = createContext();
 export const userContext = createContext();
@@ -35,21 +36,21 @@ function App() {
   }, [user]);
 
   useEffect(() => {
-    fetch("/me").then((resp) => {
+    fetch(`${url}/me`).then((resp) => {
       if (resp.ok) {
         resp.json().then((data) => setUser(data));
       } else {
         setUser(null);
       }
     });
-    fetch("/events").then((resp) => {
+    fetch(`${url}/events`).then((resp) => {
       if (resp.ok) {
         resp.json().then((data) => setEvents(data));
       } else {
         setEvents(null);
       }
     });
-    fetch("/sponsors").then((resp) => {
+    fetch(`${url}/sponsors`).then((resp) => {
       if (resp.ok) {
         resp.json().then((data) => setSponsors(data));
       } else {
@@ -68,7 +69,7 @@ function App() {
 
   function handleLogin(e) {
     e.preventDefault();
-    fetch("/login", {
+    fetch(`${url}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -87,7 +88,7 @@ function App() {
   }
 
   function handleLogout() {
-    fetch("/logout", {
+    fetch(`${url}/logout`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
