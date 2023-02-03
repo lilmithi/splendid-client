@@ -28,22 +28,11 @@ function App() {
   const [sponsors, setSponsors] = useState(null);
 
   useEffect(() => {
-    fetch(`${url}/me`).then((resp) => {
-      if (resp.ok) {
-        resp.json().then((data) => {
-          setUser(data);
-          setIsLoggedIn(true);
-        });
-      } else {
-        setUser(null);
-        setIsLoggedIn(false);
-      }
-    });
-    // if (!user) {
-    //   setIsLoggedIn(false);
-    // } else {
-    //   setIsLoggedIn(true);
-    // }
+    if (!user) {
+      setIsLoggedIn(false);
+    } else {
+      setIsLoggedIn(true);
+    }
   }, [user]);
 
   useEffect(() => {
