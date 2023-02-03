@@ -39,6 +39,7 @@ function App() {
     fetch(`${url}/me`).then((resp) => {
       if (resp.ok) {
         resp.json().then((data) => setUser(data));
+        console.log(user)
       } else {
         setUser(null);
       }
