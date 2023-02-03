@@ -36,14 +36,14 @@ function App() {
   }, [user]);
 
   useEffect(() => {
-    // fetch(`${url}/me`).then((resp) => {
-    //   if (resp.ok) {
-    //     resp.json().then((data) => setUser(data));
-    //     console.log(user)
-    //   } else {
-    //     setUser(null);
-    //   }
-    // });
+    fetch(`${url}/me`).then((resp) => {
+      if (resp.ok) {
+        resp.json().then((data) => setUser(data));
+        console.log(user);
+      } else {
+        setUser(null);
+      }
+    });
     fetch(`${url}/events`).then((resp) => {
       if (resp.ok) {
         resp.json().then((data) => setEvents(data));
@@ -58,7 +58,7 @@ function App() {
         setSponsors(null);
       }
     });
-  }, []);
+  }, [user]);
 
   function handleSearch(e) {
     setSearchValue(e.target.value.toLowerCase());
