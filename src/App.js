@@ -27,11 +27,13 @@ function App() {
   const [filterValue, setFilterValue] = useState("");
   const [sponsors, setSponsors] = useState(null);
 
-  if (!user) {
-    setIsLoggedIn(false);
-  } else {
-    setIsLoggedIn(true);
-  }
+  useEffect(() => {
+    if (!user) {
+      setIsLoggedIn(false);
+    } else {
+      setIsLoggedIn(true);
+    }
+  }, [user]);
 
   useEffect(() => {
     fetch(`${url}/events`).then((resp) => {
