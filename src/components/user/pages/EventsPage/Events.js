@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Footer from "../../Footer";
 import Spinner from "../../../Spinner";
 import EventCard from "./EventCard";
+import { userContext } from "../../../../App";
 
 function Events({ events, handleFilter }) {
+  const userDetails=useContext(userContext)
   const [selectedVal, setSelectedVal] = useState("");
   useEffect(() => {
     handleFilter(selectedVal);
