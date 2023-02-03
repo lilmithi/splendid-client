@@ -1,21 +1,12 @@
 import React, { Suspense, useContext, useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { StatusContext, userContext } from "../../../../App";
+import { userContext } from "../../../../App";
 import { url } from "../../../../constant";
 import Spinner from "../../../Spinner";
 const CommentPic = React.lazy(() => import("./CommentPic"));
 
 function EventDetails() {
-  const [userDetails, setUserDetails] = useState(null);
-  useEffect(() => {
-    fetch(`${url}/me`).then((resp) => {
-      if (resp.ok) {
-        resp.json().then((data) => setUserDetails(data));
-      } else {
-        setUserDetails(null);
-      }
-    });
-  }, []);
+  const userDetails = useContext(userContext);
   const { eventId } = useParams();
   const [foundEvent, setFoundEvent] = useState(null);
   const [ticketType, setTicketType] = useState("select");
