@@ -27,23 +27,13 @@ function App() {
   const [filterValue, setFilterValue] = useState("");
   const [sponsors, setSponsors] = useState(null);
 
-  useEffect(() => {
-    if (!user) {
-      setIsLoggedIn(false);
-    } else {
-      setIsLoggedIn(true);
-    }
-  }, [user]);
+  if (!user) {
+    setIsLoggedIn(false);
+  } else {
+    setIsLoggedIn(true);
+  }
 
   useEffect(() => {
-    fetch(`${url}/me`).then((resp) => {
-      if (resp.ok) {
-        resp.json().then((data) => setUser(data));
-        console.log(user);
-      } else {
-        setUser(null);
-      }
-    });
     fetch(`${url}/events`).then((resp) => {
       if (resp.ok) {
         resp.json().then((data) => setEvents(data));
@@ -58,7 +48,7 @@ function App() {
         setSponsors(null);
       }
     });
-  }, [user]);
+  }, []);
 
   function handleSearch(e) {
     setSearchValue(e.target.value.toLowerCase());
