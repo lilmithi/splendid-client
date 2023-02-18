@@ -18,7 +18,11 @@ function Profile() {
     <div className="flex w-full z-0">
       <div className="profile-sidebar h-[calc(100vh-5rem)] bg-gray-500 w-1/4 flex p-6 flex-col items-center gap-6">
         <h3 className="text-lg text-white uppercase">My Profile</h3>
-        <div className="h-64 w-64 border-2 border-green-500 rounded-full overflow-hidden">
+        <div
+          className={`h-64 w-64 border-2 ${
+            userDetails.client_image ? "border-green-500" : "border-red-500"
+          } rounded-full overflow-hidden`}
+        >
           <img
             src={
               userDetails
