@@ -1588,6 +1588,20 @@ body {
   font-family: "Poppins";
 }
 
+::-webkit-scrollbar {
+  width: 1em;
+  background-color: rgb(247, 247, 247);
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #8a878a;
+  border-radius: 10px;
+}
+
 .category-title{
   padding-left: 2rem;
   padding-right: 2rem;
