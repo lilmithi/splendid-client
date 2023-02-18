@@ -62,7 +62,7 @@ function Checkout() {
                   return actions.order.create({
                     purchase_units: [
                       {
-                        amount: { value: total },
+                        amount: { value: Math.trunc(total / 120) },
                       },
                     ],
                   });
