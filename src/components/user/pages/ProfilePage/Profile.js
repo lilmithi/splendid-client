@@ -20,15 +20,11 @@ function Profile() {
         <h3 className="text-lg text-white uppercase">My Profile</h3>
         <div
           className={`h-64 w-64 border-2 ${
-            userDetails.client_image ? "border-green-500" : "border-red-500"
+            userDetails ? "border-green-500" : "border-red-500"
           } rounded-full overflow-hidden`}
         >
           <img
-            src={
-              userDetails
-                ? userDetails.client_image
-                : "assets/default-profile-pic.png"
-            }
+            src={userDetails ? userDetails : "assets/default-profile-pic.png"}
             alt="profile pic"
             className="w-full h-full object-cover hover:opacity-90 transition duration-1000 ease-in-out"
           />
