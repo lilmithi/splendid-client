@@ -28,11 +28,10 @@ function App() {
   const [sponsors, setSponsors] = useState(null);
 
   useEffect(() => {
-    // setUser(() => JSON.parse(localStorage.getItem("splendidClient")));
     if (!user) {
-      setIsLoggedIn(()=>false);
+      setIsLoggedIn(() => false);
     } else {
-      setIsLoggedIn(()=>true);
+      setIsLoggedIn(() => true);
     }
   }, [user]);
 
@@ -87,17 +86,6 @@ function App() {
   }
 
   function handleLogout() {
-    // fetch(`${url}/logout`, {
-    //   method: "DELETE",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     accept: "application/json",
-    //   },
-    //   body: JSON.stringify({}),
-    // }).then((resp) => {
-    //   if (resp.ok) {
-    //   }
-    // });
     localStorage.removeItem("splendidClient");
     setUser(localStorage.getItem("splendidClient"));
     history.push("/");
