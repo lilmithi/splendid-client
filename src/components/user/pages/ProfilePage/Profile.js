@@ -24,7 +24,7 @@ function Profile() {
           } rounded-full overflow-hidden`}
         >
           <img
-            src={userDetails ? userDetails : "assets/default-profile-pic.png"}
+            src={userDetails ? userDetails.client_image : "assets/default-profile-pic.png"}
             alt="profile pic"
             className="w-full h-full object-cover hover:opacity-90 transition duration-1000 ease-in-out"
           />
