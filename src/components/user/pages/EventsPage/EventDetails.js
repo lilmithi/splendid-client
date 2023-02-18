@@ -82,23 +82,30 @@ function EventDetails() {
   function handleComment(e) {
     e.preventDefault();
     setPostComment(true);
-    fetch(`${url}/comments`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        content: comment,
-        event_id: eventId,
-      }),
-    }).then((resp) => {
-      if (resp.ok) {
-        e.target.reset();
-        setComment("");
+    if (userDetails) {
+      fetch(`${url}/comments`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          content: comment,
+          event_id: eventId,
+          client_id: userDetails.id,
+        }),
+      }).then((resp) => {
+        if (resp.ok) {
+          e.target.reset();
+          setComment("");
+          // setPostComment(false);
+        } else {
+          // setPostComment(false);
+          resp.json().then((data) => setCommentError(data.errors));
+        }
         setPostComment(false);
-      } else {
-        setPostComment(false);
-        resp.json().then((data) => setCommentError(data.errors));
-      }
-    });
+      });
+    } else {
+      setPostComment(false);
+      setCommentError(["Please sign in to post a comment"]);
+    }
   }
 
   return (

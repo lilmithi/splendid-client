@@ -28,14 +28,16 @@ function App() {
   const [sponsors, setSponsors] = useState(null);
 
   useEffect(() => {
+    // setUser(() => JSON.parse(localStorage.getItem("splendidClient")));
     if (!user) {
-      setIsLoggedIn(false);
+      setIsLoggedIn(()=>false);
     } else {
-      setIsLoggedIn(true);
+      setIsLoggedIn(()=>true);
     }
   }, [user]);
 
   useEffect(() => {
+    setUser(() => JSON.parse(localStorage.getItem("splendidClient")));
     fetch(`${url}/events`).then((resp) => {
       if (resp.ok) {
         resp.json().then((data) => setEvents(data));
@@ -71,29 +73,34 @@ function App() {
       body: JSON.stringify(formData),
     }).then((resp) => {
       if (resp.ok) {
-        resp.json().then((data) => setUser(data));
+        resp.json().then((data) => {
+          localStorage.setItem("splendidClient", JSON.stringify(data.client));
+          setUser(JSON.parse(localStorage.getItem("splendidClient")));
+          console.log(data);
+        });
         e.target.reset();
         history.push("/");
       } else {
-        resp.json().then((e) => setLoginError(e.errors[0]));
+        resp.json().then((e) => setLoginError(e.errors));
       }
     });
   }
 
   function handleLogout() {
-    fetch(`${url}/logout`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        accept: "application/json",
-      },
-      body: JSON.stringify({}),
-    }).then((resp) => {
-      if (resp.ok) {
-        setUser(null);
-        history.push("/");
-      }
-    });
+    // fetch(`${url}/logout`, {
+    //   method: "DELETE",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     accept: "application/json",
+    //   },
+    //   body: JSON.stringify({}),
+    // }).then((resp) => {
+    //   if (resp.ok) {
+    //   }
+    // });
+    localStorage.removeItem("splendidClient");
+    setUser(localStorage.getItem("splendidClient"));
+    history.push("/");
   }
 
   function handleFilter(val) {

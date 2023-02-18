@@ -1,8 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { userContext } from "../../../../App";
+import { url } from "../../../../constant";
 
 function Profile() {
-  const userDetails = useContext(userContext);
+  const user = useContext(userContext);
+  const [userDetails, setUserDetails] = useState(null);
+  useEffect(() => {
+    if (user) {
+      fetch(`${url}/clients/${user["id"]}`).then((resp) => {
+        if (resp.ok) {
+          resp.json().then((data) => setUserDetails(data));
+        }
+      });
+    }
+  }, [user]);
   return (
     <div className="flex w-full z-0">
       <div className="profile-sidebar h-[calc(100vh-5rem)] bg-gray-500 w-1/4 flex p-6 flex-col items-center gap-6">

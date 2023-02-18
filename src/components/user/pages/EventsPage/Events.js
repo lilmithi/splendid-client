@@ -5,7 +5,7 @@ import EventCard from "./EventCard";
 import { userContext } from "../../../../App";
 
 function Events({ events, handleFilter }) {
-  const userDetails=useContext(userContext)
+  const userDetails = useContext(userContext);
   const [selectedVal, setSelectedVal] = useState("");
   useEffect(() => {
     handleFilter(selectedVal);
