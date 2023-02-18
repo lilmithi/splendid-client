@@ -23,11 +23,15 @@ function Profile() {
             userDetails ? "border-green-500" : "border-red-500"
           } rounded-full overflow-hidden`}
         >
-          <img
-            src={userDetails ? userDetails.client_image : "assets/default-profile-pic.png"}
-            alt="profile pic"
-            className="w-full h-full object-cover hover:opacity-90 transition duration-1000 ease-in-out"
-          />
+          {userDetails ? (
+            <img
+              src={userDetails.client_image}
+              alt="profile pic"
+              className="w-full h-full object-cover hover:opacity-90 transition duration-1000 ease-in-out"
+            />
+          ) : (
+            <div className="w-full h-full bg-black"></div>
+          )}
         </div>
         <h2 className="text-white font-semibold tracking-wide">
           {userDetails ? userDetails.client_name : ""}
