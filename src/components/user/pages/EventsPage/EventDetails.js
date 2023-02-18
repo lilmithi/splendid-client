@@ -95,12 +95,12 @@ function EventDetails() {
         if (resp.ok) {
           e.target.reset();
           setComment("");
-          // setPostComment(false);
+          setPostComment(false);
         } else {
-          // setPostComment(false);
+          setPostComment(false);
           resp.json().then((data) => setCommentError(data.errors));
         }
-        setPostComment(false);
+        // setPostComment(false);
       });
     } else {
       setPostComment(false);
