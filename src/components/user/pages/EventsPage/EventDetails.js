@@ -74,8 +74,6 @@ function EventDetails() {
   function handleDelete(id) {
     fetch(`${url}/comments/${id}`, {
       method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({}),
     }).then(setIsDeleted(true));
   }
 
