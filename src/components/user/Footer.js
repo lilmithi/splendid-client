@@ -32,10 +32,27 @@ function Footer() {
           </a>
         </div>
       </div>
-      <div className="flex items-center">
-        <div className="flex flex-col items-center">
-          <h3>Splendid Events</h3>
-          <p>lorem</p>
+      <div className="flex items-center w-full">
+        <div className="flex flex-col w-full gap-3 justify-around items-center pb-2 border-b">
+          <h3 className="text-white my-4 font-bold text-xl">Splendid Events</h3>
+          <div className="flex justify-center items-center gap-6">
+            <input
+              type="text"
+              placeholder="Enter your Mail"
+              className="p-4 rounded-lg"
+            />
+            <button className="h-full bg-purple-600 text-white p-4 rounded-lg">
+              Subscribe
+            </button>
+          </div>
+          <div className="flex justify-around mt-2 gap-12 items-center text-white">
+            <p>Home</p>
+            <p>About</p>
+            <p>Services</p>
+            <p>Get in touch</p>
+            <p>FAQs</p>
+          </div>
+          
         </div>
       </div>
     </div>
